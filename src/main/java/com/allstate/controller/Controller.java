@@ -51,7 +51,7 @@ public class Controller {
 
     @PostMapping ("/validation")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public void testValidationPostMethod(@Valid @RequestBody Person person, Errors errors) throws BadRequestException, ApiException {
+    public Person testValidationPostMethod(@Valid @RequestBody Person person, Errors errors) throws BadRequestException, ApiException {
         //this is to be used in instances where we are validating data and the inputs that are required are passed down
         //but not valid ie mbrId greater than 9 less than 15 and 5 digits was passed in.
         //this can also return a list of errors by fields as well
@@ -63,8 +63,6 @@ public class Controller {
             });
             throw new BadRequestException(badRequestExceptions);
         }
-
-
+        return person;
     }
-
 }
