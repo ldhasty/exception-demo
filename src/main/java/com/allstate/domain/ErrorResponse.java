@@ -15,5 +15,19 @@ public class ErrorResponse {
         this.status = status;
     }
 
+    public String getUserMsg() {
+        return userMsg;
+    }
+
+
+    public String getDevMessage() {
+        return devMessage;
+    }
+
+
+    public HttpStatus getStatus() {
+        return status;
+    }
+
 
 }

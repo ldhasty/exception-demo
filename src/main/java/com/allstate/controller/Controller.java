@@ -58,7 +58,6 @@ public class Controller {
         List<BadRequestException> badRequestExceptions  = new ArrayList<>();
 
         if (errors.hasErrors()) {
-            BadRequestException badRequestException = new BadRequestException();
             errors.getFieldErrors().stream().forEach(error ->{
                 badRequestExceptions.add(new BadRequestException(error.getField() + " " + error.getDefaultMessage()));
             });
