@@ -28,10 +28,15 @@ public class ExceptionController {
     protected List<ErrorResponse> handleBadRequest(BadRequestException ex) {
 
         List<ErrorResponse> errorResponseList = new ArrayList<>();
-
-        ex.getBadRequestExceptionList().stream().forEach(error ->{
-            errorResponseList.add(new ErrorResponse(error.getMessage(),error.getMessage(),HttpStatus.BAD_REQUEST)) ;
-        });
+        if (ex.getBadRequestExceptionList().isEmpty())
+        {
+            errorResponseList.add(new ErrorResponse(ex.getMessage(),ex.getMessage(),HttpStatus.BAD_REQUEST));
+        }
+        else {
+            ex.getBadRequestExceptionList().stream().forEach(error -> {
+                errorResponseList.add(new ErrorResponse(error.getMessage(), error.getMessage(), HttpStatus.BAD_REQUEST));
+            });
+        }
         return errorResponseList;
     }
 
