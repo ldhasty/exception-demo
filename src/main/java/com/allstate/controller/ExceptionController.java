@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
-
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 
 @RestControllerAdvice
@@ -44,6 +44,12 @@ public class ExceptionController {
     @ResponseStatus( value = CONFLICT )
     protected ErrorResponse handleAlreadyExistsRequest(ExistsException ex) {
         return new ErrorResponse(ex.getMessage(),ex.getMessage(), CONFLICT);
+    }
+
+    @ExceptionHandler(ApiException.class)
+    @ResponseStatus( value = INTERNAL_SERVER_ERROR )
+    protected ErrorResponse handleInternalSeverError(ApiException ex) {
+        return new ErrorResponse(ex.getMessage(),ex.getMessage(), INTERNAL_SERVER_ERROR);
     }
 
 }

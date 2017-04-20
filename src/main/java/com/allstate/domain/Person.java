@@ -16,7 +16,7 @@ public class Person {
     private String lname;
 
     @Length(min = 9,max = 9,message = "cant be more or less than nine")
-
+    @NotEmpty(message = " cannot be empty")
     private String ssn;
 
 
