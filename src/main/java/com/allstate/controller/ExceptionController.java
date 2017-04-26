@@ -51,5 +51,4 @@ public class ExceptionController {
     protected ErrorResponse handleInternalSeverError(ApiException ex) {
         return new ErrorResponse(ex.getMessage(),ex.getMessage(), INTERNAL_SERVER_ERROR);
     }
-
 }

@@ -5,6 +5,10 @@ import com.allstate.exception.ApiException;
 import com.allstate.exception.BadRequestException;
 import com.allstate.exception.ExistsException;
 import com.allstate.exception.NotFoundException;
+import com.allstate.service.DummyService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -14,15 +18,27 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/")
 public class Controller {
 
+    private static Logger log = LoggerFactory.getLogger(Controller.class);
+    @Autowired
+    DummyService dummyService;
+
     @GetMapping
     public ResponseEntity<Object> testGetMethod() throws NotFoundException , ApiException {
         //used for queries that have returned 0 rows
-        throw new NotFoundException("User doesnt exist");
+        log.info("Entering testgetMethod");
+        log.info("doing something here maybe a serivce call or something");
+        log.info("Maybe looking for an object that we will find");
+        log.info("Leaving this method with correlationId goodness");
+        log.info("Not really leaving but you get the idea lol hopefully this works well with AOP");
+        log.info("Maybe we can have the method named logged as well by default via Spring AOP");
+        log.info("Will this replace some of the need for the AOP stuff thats up for discussion");
+        dummyMethod();
+        Object response = dummyService.dummyServiceMethod();
+        return new ResponseEntity<Object>(response,HttpStatus.OK);
     }
 
     @PostMapping
@@ -64,5 +80,11 @@ public class Controller {
             throw new BadRequestException(badRequestExceptions);
         }
         return person;
+    }
+
+    public void dummyMethod ()
+    {
+        log.info("This is a dumy method to see what happens here as well");
+
     }
 }

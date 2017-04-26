@@ -7,12 +7,14 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE"
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: "io.spring.dependency-management"
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
@@ -20,10 +22,15 @@ sourceCompatibility = 1.8
 repositories {
 	mavenCentral()
 }
-
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.cloud:spring-cloud-sleuth:1.2.0.RELEASE'
+	}
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-validation')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile 'org.springframework.cloud:spring-cloud-starter-sleuth'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
