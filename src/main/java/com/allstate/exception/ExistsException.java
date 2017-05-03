@@ -1,7 +1,7 @@
 package com.allstate.exception;
 
 
-public class ExistsException extends Exception {
+public class ExistsException extends RuntimeException {
 
     public ExistsException() {
     }

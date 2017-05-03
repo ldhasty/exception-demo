@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BadRequestException extends Exception{
+public class BadRequestException extends RuntimeException{
 
     List<BadRequestException> badRequestExceptionList = new ArrayList<>();
 

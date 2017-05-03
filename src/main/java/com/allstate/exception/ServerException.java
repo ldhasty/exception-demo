@@ -1,7 +1,7 @@
 package com.allstate.exception;
 
 
-public class ServerException extends Exception{
+public class ServerException extends RuntimeException{
 
     public ServerException() {
     }
